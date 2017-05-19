@@ -6,7 +6,7 @@
 apt-get update -y
 apt-get upgrade -y
 
-# Install Nginx:
+# Install Nginx
 apt-get install -y nginx
 
 # Start Nginx service and enable to start on boot
@@ -29,7 +29,7 @@ ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.co
 # Delete the default nginx server block
 rm /etc/nginx/sites-enabled/default
 
-# Copy over the html test page:
+# Copy over the html test page
 cp /tmp/example.com/index.html /var/www/html/example.com/index.html
 
 # Restart Nginx:
