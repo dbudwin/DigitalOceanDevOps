@@ -1,0 +1,33 @@
+{
+  "variables":
+  {
+    "digitalOceanApiToken": ""
+  },
+  "builders":
+  [
+    {
+      "type": "digitalocean",
+      "droplet_name": "Ubuntu1604x64-Packer",
+      "snapshot_name": "Ubuntu1604x64-Packer-{{timestamp}}",
+      "api_token": "{{ user `digitalOceanApiToken` }}",
+      "image": "ubuntu-16-04-x64",
+      "region": "nyc3",
+      "size": "512mb",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners":
+  [
+    {
+      "type": "file",
+      "source": "config/",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/configureNginx.sh"
+      ]
+    }
+  ]
+}
