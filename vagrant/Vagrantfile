@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.box = "."
+  
+  config.vm.define "droplet1" do |config|
+    config.vm.provider :digital_ocean do |provider, override|
+      override.ssh.private_key_path = '~/.ssh/id_rsa'
+      provider.token = '17393b1c5510dee9449d14bc664c937855f9e6a6b374ad026523290b686ee2f9'
+      provider.image = '24997034' # ID for Ubuntu1604x64-Packer-1495224169
+      provider.region = 'nyc3'
+      provider.size = '512mb'
+      provider.ssh_key_name = 'Drew\'s MacBook Air'
+    end
+  end
+
+  Vagrant.configure("2") do |config|
+    config.vm.provision "shell", path: "setup.sh"
+  end
+end
